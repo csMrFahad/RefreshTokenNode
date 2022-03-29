@@ -2,6 +2,6 @@
     "secret": "some-secret-goes-here",
     "refreshTokenSecret": "some-secret-refresh-token",
     "port": 3000,
-    "tokenLife": 60,
-    "refreshTokenLife": 180
+    "tokenLife": 40,
+    "refreshTokenLife": 60
 }

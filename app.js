@@ -35,17 +35,22 @@ router.post("/token", (req, res) => {
   const postData = req.body;
   // if refresh token exists
   if (postData.refreshToken && postData.refreshToken in tokenList) {
+    let flag = false;
     jwt.verify(
       postData.refreshToken,
       config.refreshTokenSecret,
       function (err, decoded) {
         if (err) {
-          return res
-            .status(401)
-            .json({ error: true, message: "Refresh token expired" });
+          flag = true;
         }
       }
     );
+
+    if (flag) {
+      return res
+        .status(401)
+        .json({ error: true, message: "Refresh token expired" });
+    }
     const user = {
       email: postData.email,
       name: postData.name,
